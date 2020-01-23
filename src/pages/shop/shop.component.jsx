@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
 import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.component";
+import CollectionPage from "../../pages/collection/collection.component";
 
 import "./shop.styles.scss";
 
@@ -19,6 +20,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
 				path={`${match.path}`}
 				component={CollectionsOverviewContainer}
 			/>
+			<Route path={`${match.path}/:collectionId`} component={CollectionPage} />
 		</div>
 	);
 };
