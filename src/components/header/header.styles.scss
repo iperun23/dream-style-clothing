@@ -1,14 +1,24 @@
 .header {
-	width: 100%;
 	height: 70px;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	padding: 0 0 25px 0;
+	margin-bottom: 25px;
+
+	@media screen and (max-width: 800px) {
+		height: 60px;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
 
 	.link-container {
 		height: 100%;
-		padding: 10px;
-		align-self: center;
+		padding: 25px;
+
+		@media screen and (max-width: 800px) {
+			width: 50px;
+			padding: 0;
+		}
 	}
 
 	.options-container {
@@ -16,11 +26,15 @@
 		height: 100%;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-end;
 
-		.option-link {
-			cursor: pointer;
-			padding: 10px 15px;
+		@media screen and (max-width: 800px) {
+			width: 80%;
 		}
+	}
+
+	.option-link {
+		padding: 10px 15px;
+		cursor: pointer;
 	}
 }

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
+import Spinner from "../../components/spinner/spinner.component";
 
 import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.component";
 import CollectionPage from "../../pages/collection/collection.component";
@@ -14,13 +15,18 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
 		fetchCollectionsStart();
 	}, [fetchCollectionsStart]);
 	return (
-		<div>
-			<Route
-				exact
-				path={`${match.path}`}
-				component={CollectionsOverviewContainer}
-			/>
-			<Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+		<div className="shoppage-container">
+			<Suspense fallback={<Spinner />}>
+				<Route
+					exact
+					path={`${match.path}`}
+					component={CollectionsOverviewContainer}
+				/>
+				<Route
+					path={`${match.path}/:collectionId`}
+					component={CollectionPage}
+				/>
+			</Suspense>
 		</div>
 	);
 };

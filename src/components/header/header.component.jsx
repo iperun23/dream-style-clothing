@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
 
 import "./header.styles.scss";
 
-const Header = () => {
+const Header = ({ hidden }) => {
 	return (
 		<div className="header">
 			<Link to="/" className="link-container">
@@ -22,9 +29,15 @@ const Header = () => {
 				<Link to="/signin" className="option-link">
 					SIGN IN
 				</Link>
+				<CartIcon />
+				{hidden ? null : <CartDropDown />}
 			</div>
 		</div>
 	);
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+	hidden: selectCartHidden
+});
+
+export default connect(mapStateToProps)(Header);
